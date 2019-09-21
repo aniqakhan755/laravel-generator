@@ -29,6 +29,7 @@ class GeneratorField
     public $inForm = true;
     public $inIndex = true;
     public $isNotNull = false;
+    public $length;
 
     public function parseDBType($dbInput)
     {
@@ -101,6 +102,7 @@ class GeneratorField
         } else {
             foreach ($fieldTypeParams as $param) {
                 $this->migrationText .= ', '.$param;
+                $this->length = $param;
             }
         }
 
@@ -130,7 +132,13 @@ class GeneratorField
         $field->name = $fieldInput['name'];
         $field->parseDBType($fieldInput['dbType']);
         $field->parseHtmlInput(isset($fieldInput['htmlType']) ? $fieldInput['htmlType'] : '');
-        $field->validations = isset($fieldInput['validations']) ? $fieldInput['validations'] : '';
+
+        $validations = isset($fieldInput['validations']) ? $fieldInput['validations'] : '';
+        if (! empty($field->length)) {
+            $lengthValidation = 'max:'.$field->length;
+            $validations .= (empty($validations)) ? $lengthValidation : '|'.$lengthValidation;
+        }
+        $field->validations = $validations;
         $field->isSearchable = isset($fieldInput['searchable']) ? $fieldInput['searchable'] : false;
         $field->isFillable = isset($fieldInput['fillable']) ? $fieldInput['fillable'] : true;
         $field->isPrimary = isset($fieldInput['primary']) ? $fieldInput['primary'] : false;

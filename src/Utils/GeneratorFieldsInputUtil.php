@@ -53,6 +53,10 @@ class GeneratorFieldsInputUtil
             $field->parseOptions($fieldInputsArr[3]);
         }
 
+        if (! empty($field->length)) {
+            $lengthValidation = 'max:'.$field->length;
+            $validations .= (empty($validations)) ? $lengthValidation : '|'.$lengthValidation;
+        }
         $field->validations = $validations;
 
         return $field;
