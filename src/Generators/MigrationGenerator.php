@@ -19,7 +19,7 @@ class MigrationGenerator extends BaseGenerator
     public function __construct($commandData)
     {
         $this->commandData = $commandData;
-        $this->path = config('infyom.laravel_generator.path.migration', database_path('migrations/'));
+        $this->path = config('aniqakhan755.laravel_generator.path.migration', database_path('migrations/'));
     }
 
     public function generate()
