@@ -90,7 +90,7 @@ if (!function_exists('get_template_file_path')) {
         $templateName = str_replace('.', '/', $templateName);
 
         $templatesPath = config(
-            'infyom.laravel_generator.path.templates_dir',
+            'aniqakhan755.laravel_generator.path.templates_dir',
             resource_path('infyom/infyom-generator-templates/')
         );
 
@@ -100,7 +100,7 @@ if (!function_exists('get_template_file_path')) {
             return $path;
         }
 
-        return base_path('vendor/infyomlabs/'.$templateType.'/templates/'.$templateName.'.stub');
+        return base_path('vendor/aniqakhan755/'.$templateType.'/templates/'.$templateName.'.stub');
     }
 }
 
