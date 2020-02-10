@@ -125,7 +125,7 @@ class $MODEL_NAME$Controller extends AppBaseController
 
         Flash::success(__('messages.updated', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index',$locale));
     }
 
     /**
